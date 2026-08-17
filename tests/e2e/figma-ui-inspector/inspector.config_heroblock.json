@@ -1,0 +1,11 @@
+{
+  "cases": [
+    {
+      "name": "vinlookup-can-am-offroad-mobile",
+      "figmaUrl": "https://www.figma.com/design/ztE53b4pQPExhEqzNmh8Zm/Vanilla---Figma-Components-Guidelines?node-id=5810-47874&m=dev",
+      "url": "https://can-am.brp.com/ca/en/",
+      "selector": "cmp-hero-block object-fit-cover background-position-center aem-GridColumn aem-GridColumn--default--12",
+      "device": "desktop"
+    }
+  ]
+}

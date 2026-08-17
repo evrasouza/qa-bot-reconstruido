@@ -1,0 +1,25 @@
+{
+  "cases": [
+    {
+      "name": "fits-on-can-am-mobile",
+      "figmaUrl": "https://www.figma.com/design/vaEgq0blOn1dzzFQ4QTyOB/Fits-on?node-id=8566-4045&m=dev",
+      "url": "https://dev1.can-am.brp.com/us/en/fits-on.html",
+      "selector": ".cmp-fits-on",
+      "device": "mobile"
+    },
+    {
+      "name": "heroblock-can-am-offroad-desktop",
+      "figmaUrl": "https://www.figma.com/design/ztE53b4pQPExhEqzNmh8Zm/Vanilla---Figma-Components-Guidelines?node-id=5810-47874&m=dev",
+      "url": "https://dev1.can-am.brp.com/off-road/ca/en/heroblock-bdpv2-15577.html?nocache=true",
+      "selector": ".cmp-hero-block-v2",
+      "device": "desktop"
+    },
+        {
+      "name": "vinlookup-can-am-offroad-desktop",
+      "figmaUrl": "https://www.figma.com/design/bojijT4Ubm6Hsk2e367UFR/Safety-Recall-VIN-Lookup---Component?node-id=355-311&m=dev",
+      "url": "https://rde1.can-am.brp.com/off-road/us/en/bdpv2-15398.html?vin=2BXNBDD29KV001148",
+      "selector": ".vinlookup.aem-GridColumn",
+      "device": "desktop"
+    }
+  ]
+}
