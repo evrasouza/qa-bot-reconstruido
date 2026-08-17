@@ -1,0 +1,37 @@
+image: node:20-bookworm-slim
+
+definitions:
+  caches:
+    bridge-cli: bridge-cli
+  steps:
+    - step: &blackduck-scan
+        name: Polaris Black Duck Security Scan
+        caches:
+          - bridge-cli
+        script:
+          - apt-get update && apt-get install -y --no-install-recommends default-jre-headless curl unzip && rm -rf /var/lib/apt/lists/*
+          - export BRIDGE_POLARIS_SERVERURL=$BLACKDUCK_URL
+          - export BRIDGE_POLARIS_ACCESSTOKEN=$BLACKDUCK_TOKEN
+          - export BRIDGE_POLARIS_ASSESSMENT_TYPES="SCA,SAST"
+          - export BRIDGE_POLARIS_APPLICATION_NAME="Digital Web"
+          - export BRIDGE_POLARIS_PROJECT_NAME="Quality Guardian"
+          - export BRIDGE_POLARIS_PRCOMMENT_ENABLED="true"
+          - export BRIDGE_BITBUCKET_PROJECT_REPOSITORY_PULL_NUMBER=${BITBUCKET_PR_ID:-0}
+          - export BRIDGE_BITBUCKET_API_TOKEN=$BITBUCKET_REPO_ACCESS_TOKEN
+          - |
+            if [ ! -x "bridge-cli/bridge-cli-bundle-linux64/bridge-cli" ]; then
+              mkdir -p bridge-cli
+              curl -fLOsS https://repo.blackduck.com/bds-integrations-release/com/blackduck/integration/bridge/binaries/bridge-cli-bundle/latest/bridge-cli-bundle-linux64.zip
+              unzip -q bridge-cli-bundle-linux64.zip -d bridge-cli
+              rm -f bridge-cli-bundle-linux64.zip
+            fi
+          - ./bridge-cli/bridge-cli-bundle-linux64/bridge-cli --stage polaris
+
+pipelines:
+  pull-requests:
+    '**':
+      - step: *blackduck-scan
+
+  branches:
+    main:
+      - step: *blackduck-scan
